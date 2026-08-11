@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Never commit patient-level data. example_data.csv is synthetic and is tracked
+# deliberately; everything else that looks like study data stays out.
+#
+# This includes the de-identified release copy. De-identified is not the same as
+# public: that copy exists to answer individual data requests after institutional
+# approval, and the paper states the data are not publicly available.
+*.xlsx
+*.xls
+*_deid*.csv
+*_merged_*.csv
+_merged_*.csv
+_id_map*.csv
+!example_data.csv

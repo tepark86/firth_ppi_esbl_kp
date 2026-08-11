@@ -1,0 +1,6 @@
+# Normalize line endings so the repository stays identical across Windows, macOS,
+# and Linux checkouts. Without this, a Windows commit stores CRLF and the same file
+# looks modified on a Linux clone.
+* text=auto eol=lf
+*.tif binary
+*.png binary

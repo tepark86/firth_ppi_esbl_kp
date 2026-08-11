@@ -1,0 +1,5 @@
+# Versions used for the analyses reported in the paper (Python 3.14.3).
+# The code does not depend on these exact versions; they are pinned for reproducibility.
+numpy==2.4.4
+scipy==1.17.1
+pandas==3.0.2
