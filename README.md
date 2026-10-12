@@ -82,6 +82,15 @@ p, stat = firth_lrt_pvalue(X, y, drop_idx=0) # penalized likelihood ratio test
 `firth_profile_ci` returns `inf` on a side where the interval is unbounded, which happens
 under complete separation and is the correct answer rather than an error.
 
+`firth_lrt_pvalue` fits the restricted model by maximizing the penalized log-likelihood
+subject to the tested coefficient being zero, with the Jeffreys penalty still evaluated on
+the full design matrix, as `logistf` does. Refitting the reduced model on a smaller design
+matrix would change the penalty term, so the two penalized log-likelihoods would sit on
+different scales and their difference would not be a chi-square statistic; that variant
+returns p-values that are systematically too small. Keeping the full-model penalty also
+makes the test agree with `firth_profile_ci`, so a 95% profile interval excludes 1 exactly
+when the reported p is below 0.05.
+
 ## References
 
 - Firth D. Bias reduction of maximum likelihood estimates. *Biometrika* 1993;80(1):27-38.

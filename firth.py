@@ -192,19 +192,24 @@ def firth_logit(X, y, var_names=None, ci="wald"):
 def firth_lrt_pvalue(X_full, y, drop_idx):
     """Penalized likelihood ratio test dropping column drop_idx (0-based, in X_full WITHOUT intercept).
     Returns p-value comparing full vs reduced.
+
+    The restricted model is obtained by maximizing the penalized log-likelihood
+    subject to beta[drop_idx] = 0 while the Jeffreys penalty 0.5*log|I(beta)| is
+    still evaluated on the FULL design matrix, as in Heinze and Schemper and in
+    the logistf implementation. Refitting the reduced model on a smaller design
+    matrix would change the penalty term, so the two penalized log-likelihoods
+    would no longer be on a common scale and their difference would not follow
+    a chi-square distribution. This also keeps the test consistent with
+    firth_profile_ci, so a 95% profile interval excludes 1 exactly when p < 0.05.
     """
     X_full = np.asarray(X_full, dtype=float)
+    y = np.asarray(y, dtype=float)
     if X_full.ndim == 1:
         X_full = X_full.reshape(-1, 1)
     X_int = np.hstack([np.ones((X_full.shape[0], 1)), X_full])
-    _, _, ll_full = _firth_fit(X_int, y)
-    keep = [c for c in range(X_full.shape[1]) if c != drop_idx]
-    if not keep:
-        # Reduced = intercept only
-        X_red = np.ones((X_full.shape[0], 1))
-    else:
-        X_red = np.hstack([np.ones((X_full.shape[0], 1)), X_full[:, keep]])
-    _, _, ll_red = _firth_fit(X_red, y)
+    j = drop_idx + 1  # column index in X_int
+    ll_full, _ = _max_pen(X_int, y)
+    ll_red, _ = _max_pen(X_int, y, fix=j, val=0.0)
     stat = 2 * (ll_full - ll_red)
     if stat < 0:
         stat = 0.0

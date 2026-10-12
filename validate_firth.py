@@ -94,6 +94,7 @@ MODELS = [
     ('mortality ~ PPI + immuno', ['home_ppi_use', 'immuno'], 'in_hospital_mortality'),
     ('mortality ~ PPI + malignancy', ['home_ppi_use', 'malig'], 'in_hospital_mortality'),
     ('mortality ~ PPI + approp', ['home_ppi_use', 'emp_ap'], 'in_hospital_mortality'),
+    ('mortality ~ PPI + liver disease', ['home_ppi_use', 'cld'], 'in_hospital_mortality'),
     ('mortality ~ PPI + immuno + UTI',
      ['home_ppi_use', 'immuno', 'src_uti'], 'in_hospital_mortality'),
     ('failure ~ PPI + immuno + UTI', ['home_ppi_use', 'immuno', 'src_uti'], 'fail'),
@@ -106,6 +107,7 @@ def check_independent_optimizer(path):
     d['src_uti'] = (d['infection_source'] == 'UTI').astype(int)
     d['malig'] = (d['malignancy'] == 1).astype(int)
     d['emp_ap'] = (d['empiric_appropriate'] == 1).astype(int)
+    d['cld'] = (d['chronic_liver_disease'] == 1).astype(int)
     d['fail'] = ((d['in_hospital_mortality'] == 1) | (d['clinical_cure_48h'] == 0)).astype(int)
 
     print(f'\ncheck 2 - independent maximization of the same penalized log-likelihood')

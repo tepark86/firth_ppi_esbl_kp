@@ -32,6 +32,7 @@ def main():
     immunosuppression = rng.binomial(1, 0.32, N)
     malignancy = rng.binomial(1, 0.47, N)
     empiric_appropriate = rng.binomial(1, 0.34, N)
+    chronic_liver_disease = rng.binomial(1, 0.21, N)
     infection_source = rng.choice(SOURCES, N, p=SOURCE_P)
 
     # Deaths depend on severity and immunosuppression, never on a urinary source, which
@@ -55,6 +56,7 @@ def main():
         'immunosuppression': immunosuppression,
         'malignancy': malignancy,
         'empiric_appropriate': empiric_appropriate,
+        'chronic_liver_disease': chronic_liver_disease,
         'infection_source': infection_source,
         'in_hospital_mortality': in_hospital_mortality,
         'clinical_cure_48h': clinical_cure_48h,
