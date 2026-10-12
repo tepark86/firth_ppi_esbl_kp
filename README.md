@@ -2,7 +2,7 @@
 
 Analysis code accompanying:
 
-> Park TE, Lee YB, Lee J, Choi H, Lee CS. Outpatient proton pump inhibitor use and clinical
+> Lee YB, Lee J, Choi H, Park TE, Lee CS. Outpatient proton pump inhibitor use and clinical
 > outcomes in community-onset extended-spectrum beta-lactamase-producing *Klebsiella
 > pneumoniae* bacteremia: a retrospective cohort study.
 

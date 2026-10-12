@@ -3,7 +3,7 @@ Firth penalized logistic regression, pure Python implementation
 ===============================================================
 Written for, and used to produce every adjusted estimate in:
 
-    Park TE, Lee YB, Lee J, Choi H, Lee CS. Outpatient proton pump inhibitor use
+    Lee YB, Lee J, Choi H, Park TE, Lee CS. Outpatient proton pump inhibitor use
     and clinical outcomes in community-onset extended-spectrum beta-lactamase-producing
     Klebsiella pneumoniae bacteremia: a retrospective cohort study.
 
