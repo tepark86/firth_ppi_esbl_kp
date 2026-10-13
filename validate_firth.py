@@ -10,8 +10,8 @@ Check 1, closed-form equivalence.
     equivalent to adding one half to each cell of the corresponding 2 x 2 table, so the
     fitted odds ratio must equal (a+.5)(d+.5)/((b+.5)(c+.5)). This check runs on the
     published 2 x 2 table of outpatient PPI use against in-hospital mortality, which is
-    an aggregate reported in Table 1 of the paper, and therefore reproduces the exact
-    figures quoted in the Statistical analysis section without any patient-level data.
+    an aggregate reported in Table 1 of the paper, and therefore runs without any
+    patient-level data.
 
 Check 2, independent optimizer.
     The same penalized log-likelihood, L*(b) = L(b) + 0.5*log|I(b)|, is maximized with a
@@ -19,8 +19,8 @@ Check 2, independent optimizer.
     the modified-score IRLS used in firth.py, and every coefficient must agree. Because
     this check needs patient-level covariates, which cannot be released, it runs here on
     the synthetic cohort in example_data.csv. It therefore demonstrates that the two
-    estimators agree, but does not reproduce the exact relative difference quoted in the
-    paper, which was computed on the real cohort. Point --data at the real file to do so.
+    estimators agree. On the real cohort, all odds ratios reported in the paper were
+    identical after rounding. Point --data at the real file to repeat the check there.
 
 Expected output on the shipped example data:
     check 1  theoretical 1.7111111  vs  firth.py 1.7111120   (difference 8.9e-07)

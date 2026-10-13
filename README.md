@@ -41,16 +41,17 @@ Expected result: both checks PASS.
 covariate, Firth penalization is exactly equivalent to adding one half to each cell of
 the 2 x 2 table. This check runs on the published 2 x 2 table of outpatient PPI use
 against in-hospital mortality, `[[4, 13], [7, 38]]`, an aggregate reported in Table 1 of
-the paper. It therefore reproduces the exact figures quoted in the manuscript, 1.7111120
-against a theoretical 1.7111111, with no patient-level data.
+the paper. It needs no patient-level data and gives 1.7111120 against a theoretical
+1.7111111.
 
 **Check 2, independent optimizer.** The same penalized log-likelihood is maximized with a
 general-purpose derivative-free optimizer (Nelder-Mead refined by Powell) instead of the
 modified-score IRLS, and every coefficient must agree. This check needs patient-level
 covariates, so on a fresh clone it runs against `example_data.csv` and demonstrates
-agreement to better than 1 part in 10^4. It does **not** reproduce the exact relative
-difference quoted in the paper, which was computed on the real cohort. With access to the
-real file, run `python validate_firth.py --data <file>` to reproduce that figure.
+agreement to better than 1 part in 10^4. On the real cohort, the same comparison was made
+for every model reported in the paper, and all reported odds ratios were identical after
+rounding. With access to the real file, run `python validate_firth.py --data <file>` to
+repeat it.
 
 ## Data availability
 
